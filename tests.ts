@@ -8,20 +8,20 @@ import penguins from "./penguins.json" with { type: 'json' };
 /* Désactiver COPILOT pour que vous fassiez l'effort de lire */
 
 console.log("=== EXEMPLES DES MÉTHODES ARRAY AVEC LES DONNÉES PENGUINS ===\n");
-console.log(`Nombre total de pingouins: ${/* TODO */}\n`);
+console.log(`Nombre total de pingouins: ${Object.keys(penguins).length}\n`);
 
 // ===== MÉTHODES D'ACCÈS AUX ÉLÉMENTS =====
 
 console.log("--- MÉTHODES D'ACCÈS AUX ÉLÉMENTS ---");
 
 // at() - Accède à un élément par son indice (accepte les indices négatifs)
-console.log("• at() - Premier pingouin:", penguins.at(/* TODO */)?.species);
-console.log("• at() - Dernier pingouin:", penguins.at(/* TODO */)?.species);
+console.log("• at() - Premier pingouin:", penguins.at(0)?.species);
+console.log("• at() - Dernier pingouin:", penguins.at(-1)?.species);
 console.log();
 
 // slice() - Extrait une portion du tableau
 console.log("• slice() - Les 3 premiers pingouins:");
-console.log(penguins.slice(/* TODO */).map(p => `${p.species} de ${p.island}`));
+console.log(penguins.slice(0, 3).map(p => `${p.species} de ${p.island}`));
 console.log();
 
 // ===== MÉTHODES DE RECHERCHE ET VÉRIFICATION =====
@@ -29,16 +29,16 @@ console.log();
 console.log("--- MÉTHODES DE RECHERCHE ET VÉRIFICATION ---");
 
 // find() - Trouve le premier élément qui satisfait une condition
-const premierChinstrap = penguins.find(/* TODO */);
+const premierChinstrap = penguins.find(e => e.species === "Chinstrap");
 console.log("• find() - Premier pingouin Chinstrap:", premierChinstrap?.island);
 
 // findIndex() - Trouve l'indice du premier élément qui satisfait une condition
-const indexChinstrap = penguins.findIndex(/* TODO */);
+const indexChinstrap = penguins.findIndex(e => e.species === "Chinstrap");
 console.log("• findIndex() - Index du premier Chinstrap:", indexChinstrap);
 
 // indexOf() - Trouve l'indice d'un élément (comparaison stricte)
 const especies = penguins.map(p => p.species);
-console.log("• indexOf() - Index de 'Gentoo' dans la liste des espèces:", especies.indexOf(/* TODO */));
+console.log("• indexOf() - Index de 'Gentoo' dans la liste des espèces:", especies.indexOf("Gentoo"));
 
 // lastIndexOf() - Trouve le dernier indice d'un élément
 console.log("• lastIndexOf() - Dernier index de 'Adelie':", especies/* TODO */);
