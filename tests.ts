@@ -119,7 +119,7 @@ console.log("--- MÉTHODES DE TRI ---");
 // sort() - Trie les éléments (modifie le tableau original)
 const massesCopie = penguins.slice(0, 5).map(p => p.body_mass_g).filter(m => m != null);
 console.log("• sort() - Masses avant tri:", massesCopie);
-massesCopie.sort((a, b) => a - b ); // différence pour tri
+massesCopie.sort((a, b) => a - b); // différence pour tri
 console.log("• sort() - Masses après tri croissant:", massesCopie);
 
 // Tri par espèce
@@ -161,7 +161,7 @@ console.log("--- MÉTHODES DE CONCATÉNATION ---");
 // concat() - Joint des tableaux
 const adelies = penguins.filter(p => p.species === "Adelie").slice(0, 2);
 const chinstraps = penguins.filter(p => p.species === "Chinstrap").slice(0, 2);
-const melange = /* TODO */;
+const melange = adelies.concat(chinstraps);
 console.log("• concat() - Mélange Adelies + Chinstraps:");
 melange.forEach(p => console.log(`  ${p.species} de ${p.island}`));
 console.log();
@@ -173,8 +173,8 @@ console.log("--- MÉTHODES D'APLATISSEMENT ---");
 // flat() - Aplatit les tableaux imbriqués
 const groupesParIle = [
     penguins.filter(p => p.island === "Torgersen").slice(0, 2).map(p => p.species),
-    penguins.filter(p => p.island === "Biscoe").slice(0, 2).map(/* TODO */),
-    penguins.filter(p => p.island === "Dream").slice(0, 2).map(/* TODO */)
+    penguins.filter(p => p.island === "Biscoe").slice(0, 2).map(p => p.species),
+    penguins.filter(p => p.island === "Dream").slice(0, 2).map(p => p.species)
 ];
 console.log("• flat() - Groupes par île avant aplatissement:", groupesParIle);
 console.log("• flat() - Après aplatissement:", groupesParIle.flat());
@@ -186,10 +186,10 @@ console.log("--- STATISTIQUES FINALES ---");
 
 // Calculs statistiques utilisant différentes méthodes
 const masses = penguins.map(p => p.body_mass_g).filter(m => m != null);
-const masseTotaleCalc = masses.reduce((sum, mass) => /* TODO */, 0);
+const masseTotaleCalc = masses.reduce((sum, mass) => sum + mass, 0);
 const masseMoyenne = masseTotaleCalc / masses.length;
 const masseMin = Math.min(...masses);
-const masseMax = /* TODO */;
+const masseMax = Math.max(...masses);
 
 console.log("• Statistiques des masses:");
 console.log(`  - Masse moyenne: ${masseMoyenne.toFixed(1)}g`);
@@ -220,7 +220,7 @@ console.log("\n--- GROUPEMENT AVEC Object.groupBy ---");
 
 // Groupement par île
 console.log("• Object.groupBy() - Répartition par île:");
-const pingouinsParIle = Object.groupBy(penguins, /* TODO */);
+const pingouinsParIle = Object.groupBy(penguins, ({ island }) => island);
 for (const [ile, pingouins] of Object.entries(pingouinsParIle)) {
     console.log(`  ${ile}: ${pingouins?.length || 0} pingouins`);
 }
@@ -231,10 +231,14 @@ console.log("\n• Object.groupBy() - Répartition par espèce et sexe:");
 const pingouinsParEspeceEtSexe = Object.groupBy(penguins, pingouin =>
     `${pingouin.species} - ${pingouin.sex || 'inconnu'}`
 );
+for (const [a, b] of Object.entries(pingouinsParEspeceEtSexe)) {
+    console.log(`  ${a}: ${b?.length || 0} pingouins`);
+}
 
 // Groupement par sexe
 console.log("\n• Object.groupBy() - Répartition par sexe:");
-const pingouinsParSexe = Object.groupBy(penguins, /* TODO remplacer null par "inconnu" */);
+const pingouinsParSexe = Object.groupBy(penguins, ({ sex }) => `${sex || 'inconnu'}`
+);
 for (const [sexe, pingouins] of Object.entries(pingouinsParSexe)) {
     console.log(`  ${sexe}: ${pingouins?.length || 0} pingouins`);
 }
