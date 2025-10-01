@@ -45,7 +45,7 @@ console.log("• lastIndexOf() - Dernier index de 'Adelie':", especies.lastIndex
 
 // includes() - Vérifie si un élément existe dans le tableau
 const iles = penguins.map(p => p.island);
-console.log("• includes() - Île 'Dream' existe-t-elle?", /* TODO */);
+console.log("• includes() - Île 'Dream' existe-t-elle?", iles.includes("Dream"));
 
 // some() - Teste si au moins un élément satisfait une condition
 const auMoinsUnLourd = penguins.some(p => p.body_mass_g != null && /* TODO */);
