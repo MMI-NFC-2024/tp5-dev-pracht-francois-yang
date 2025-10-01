@@ -8,7 +8,7 @@ import penguins from "./penguins.json" with { type: 'json' };
 /* Désactiver COPILOT pour que vous fassiez l'effort de lire */
 
 console.log("=== EXEMPLES DES MÉTHODES ARRAY AVEC LES DONNÉES PENGUINS ===\n");
-console.log(`Nombre total de pingouins: ${Object.keys(penguins).length}\n`);
+console.log(`Nombre total de pingouins: ${penguins.length}\n`);
 
 // ===== MÉTHODES D'ACCÈS AUX ÉLÉMENTS =====
 
@@ -261,3 +261,16 @@ Object.entries(pingouinsParCategorieMasse)
 console.log("\n=== FIN DES EXEMPLES ===");
 
 /* TODO Faire de même pour d'autres dataset : https://observablehq.com/@observablehq/sample-datasets (Possible d'utiliser COPILOT */
+
+import olympians from "./olympians.json" with { type: 'json' };
+
+// findIndex() - Trouve l'indice du premier élément qui satisfait une condition
+const indexAthleteF = olympians.findIndex(d => d.sex === "female");
+console.log("• findIndex() - Index de la première athlète féminine:", indexAthleteF);
+
+// indexOf() - Trouve l'indice d'un élément (comparaison stricte)
+const sport = olympians.map(p => p.sport);
+console.log("• indexOf() - Index de 'football' dans la liste :", sport.indexOf("football"));
+
+// lastIndexOf() - Trouve le dernier indice d'un élément
+console.log("• lastIndexOf() - Dernier index de 'athletics':", sport.lastIndexOf("athletics"));
