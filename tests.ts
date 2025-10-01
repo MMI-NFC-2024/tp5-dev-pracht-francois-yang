@@ -73,7 +73,7 @@ console.log();
 console.log("--- MÉTHODES DE TRANSFORMATION ---");
 
 // map() - Transforme chaque élément et crée un nouveau tableau
-const descriptions = penguins.slice(0, 3).map(p => 
+const descriptions = penguins.slice(0, 3).map(p =>
     `${p.species} (${p.sex}) - ${p.body_mass_g}g`
 );
 console.log("• map() - Descriptions des 3 premiers:");
@@ -88,25 +88,25 @@ const nomsEspeces = penguins.map(e => e.species =);
 console.log("• map() - Espèces uniques:", [...new Set(nomsEspeces)]);
 
 // flatMap() - Applique une fonction puis aplatit d'un niveau
-const caracteristiques = penguins.slice(0, 2).flatMap(p => 
+const caracteristiques = penguins.slice(0, 2).flatMap(p =>
     [p.species, p.island, p.sex]
 );
 console.log("• flatMap() - Caractéristiques aplaties:", caracteristiques);
 
 // reduce() - Réduit le tableau à une seule valeur
-const masseTotale = penguins.reduce((total, p) => 
+const masseTotale = penguins.reduce((total, p) =>
     p.body_mass_g != null ? total + p.body_mass_g : total, 0
 );
 console.log("• reduce() - Masse totale:", masseTotale, "grammes");
 
 const nbrParEspece = penguins.reduce((acc, p) => {
-    acc[/* TODO */] = (acc[/* TODO */] || 0) + 1;
+    acc[p.species] = (acc[p.species] || 0) + 1;
     return acc;
 }, {} as Record<string, number>);
 console.log("• reduce() - Comptage par espèce:", nbrParEspece);
 
 // reduceRight() - Réduit de droite à gauche
-const derniersNoms = penguins.slice(-3).reduceRight((acc, p) => 
+const derniersNoms = penguins.slice(-3).reduceRight((acc, p) =>
     acc + p.species + " ", ""
 );
 console.log("• reduceRight() - 3 dernières espèces (inversées):", derniersNoms.trim());
@@ -119,12 +119,12 @@ console.log("--- MÉTHODES DE TRI ---");
 // sort() - Trie les éléments (modifie le tableau original)
 const massesCopie = penguins.slice(0, 5).map(p => p.body_mass_g).filter(m => m != null);
 console.log("• sort() - Masses avant tri:", massesCopie);
-massesCopie.sort((a, b) => /* TODO */); // différence pour tri
+massesCopie.sort((a, b) => a - b ); // différence pour tri
 console.log("• sort() - Masses après tri croissant:", massesCopie);
 
 // Tri par espèce
-const pingouinsParEspece = penguins.slice(0, 10).sort((a, b) => 
-    /* TODO */.localeCompare(/* TODO */)
+const pingouinsParEspece = penguins.slice(0, 10).sort((a, b) =>
+    a.species.localeCompare(b.species)
 );
 console.log("• sort() - 10 premiers triés par espèce:");
 pingouinsParEspece.forEach(p => console.log(`  ${p.species} - ${p.island}`));
@@ -137,9 +137,9 @@ console.log("--- MÉTHODES D'ITÉRATION ---");
 // forEach() - Exécute une fonction pour chaque élément
 console.log("• forEach() - Affichage des 3 premiers pingouins:");
 penguins.slice(0, 3).forEach((p, index) => {
-    console.log(`  ${index + 1}. ${/* TODO  espece */} de ${/* TODO ile */} (${/* TODO masse */}g)`);
+    console.log(`  ${index + 1}. ${p.species} de ${p.island} (${p.body_mass_g}g)`);
 });
-
+console.log();
 
 // ===== MÉTHODES DE CONVERSION =====
 
@@ -148,7 +148,7 @@ console.log("--- MÉTHODES DE CONVERSION ---");
 // join() - Joint tous les éléments en une chaîne
 const premiersNoms = penguins.slice(0, 5).map(p => p.species);
 console.log("• join() - Espèces séparées par ' | ':", premiersNoms.join(" | "));
-console.log("• join() - Espèces séparées par des virgules:", /* TODO */);
+console.log("• join() - Espèces séparées par des virgules:", premiersNoms.join(", "));
 
 // toString() - Convertit en chaîne (équivalent à join(','))
 console.log("• toString() - Premières masses:", penguins.slice(0, 3).map(p => p.body_mass_g).toString());
@@ -228,7 +228,7 @@ for (const [ile, pingouins] of Object.entries(pingouinsParIle)) {
 
 // Groupement par espèce et sexe combinés
 console.log("\n• Object.groupBy() - Répartition par espèce et sexe:");
-const pingouinsParEspeceEtSexe = Object.groupBy(penguins, pingouin => 
+const pingouinsParEspeceEtSexe = Object.groupBy(penguins, pingouin =>
     `${pingouin.species} - ${pingouin.sex || 'inconnu'}`
 );
 
