@@ -41,7 +41,7 @@ const especies = penguins.map(p => p.species);
 console.log("• indexOf() - Index de 'Gentoo' dans la liste des espèces:", especies.indexOf("Gentoo"));
 
 // lastIndexOf() - Trouve le dernier indice d'un élément
-console.log("• lastIndexOf() - Dernier index de 'Adelie':", especies/* TODO */);
+console.log("• lastIndexOf() - Dernier index de 'Adelie':", especies.lastIndexOf("Adelie"));
 
 // includes() - Vérifie si un élément existe dans le tableau
 const iles = penguins.map(p => p.island);
