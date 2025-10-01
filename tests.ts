@@ -84,7 +84,7 @@ descriptions.forEach(desc => console.log("  ", desc));
  * Et l'usage de `[...new Set()]` sur le résultat pour ne garder que les noms uniques
  * Cela servira pour le prochain TP
  */
-const nomsEspeces = penguins.map(/* TODO */);
+const nomsEspeces = penguins.map(e => e.species =);
 console.log("• map() - Espèces uniques:", [...new Set(nomsEspeces)]);
 
 // flatMap() - Applique une fonction puis aplatit d'un niveau
@@ -95,7 +95,7 @@ console.log("• flatMap() - Caractéristiques aplaties:", caracteristiques);
 
 // reduce() - Réduit le tableau à une seule valeur
 const masseTotale = penguins.reduce((total, p) => 
-    p.body_mass_g != null ? total + /* TODO */ : total, 0
+    p.body_mass_g != null ? total + p.body_mass_g : total, 0
 );
 console.log("• reduce() - Masse totale:", masseTotale, "grammes");
 
